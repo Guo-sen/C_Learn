@@ -843,6 +843,197 @@
 //}
 
 
+//字符串逆序
+//void reverse(char arr[])
+//{
+//	int left = 0;
+//	int right = strlen(arr)-1;
+//	while (left < right)
+//	{
+//		char tmp = arr[left];
+//		arr[left] = arr[right];
+//		arr[right] = tmp;
+//		left++, right--;
+//	}
+//}
+
+//写一个函数，将字符串中的字符反向排列(递归)
+//void reverse(char* str)//p62
+//{
+//	char tmp = *str;
+//	int len = strlen(str);
+//	*str= *(str + len - 1);
+//	*(str + len - 1)='\0';
+//	if (strlen(str + 1) >= 2)
+//	{
+//		reverse(str + 1);
+//	}
+//	*(str + len - 1) = tmp;
+//}
+
+//优化
+//void reverse(char arr[],int left,int right)
+//{
+//	char tmp = arr[left];
+//	arr[left] = arr[right];
+//	arr[right] = tmp;
+//
+//	if (left < right)
+//	{
+//		reverse(arr,left+1,right-1);
+//	}
+//}
+//上一个函数有bug，当字符串为奇数个字符时不会出错，当为偶数个时，会出错，最中间的两个交换不了	
+//改正
+void reverse(char arr[], int left, int right)
+{
+	if (left < right)
+	{
+		char tmp = arr[left];
+		arr[left] = arr[right];
+		arr[right] = tmp;
+		reverse(arr, left + 1, right - 1);
+	}
+	
+	
+}
+int main()
+{
+	char arr[] = "abcdefg";
+	//reverse(arr);
+	int sz = strlen(arr);
+	reverse(arr,0,sz-1);
+	printf("%s\n", arr);
+	return 0;
+}
+
+//计算一个数的每一位数字之和(递归)
+//int DigSum(unsigned int num)
+//{
+//	if (num > 9)
+//	{
+//
+//		return num%10+DigSum(num/10);
+//	}
+//	else
+//	{
+//		return num;
+//	} 
+//}
+//int main()
+//{
+//	unsigned int num =0 ;
+//	printf("请输入一个数字：");
+//	scanf("%u", &num);
+//	int ret=DigSum(num);
+//	printf("sum=%d\n",ret);
+//	return 0;
+//}
+
+//递归实现n的k次方
+//double Pow(int n, int k)
+//{
+//	if (k == 0)
+//	{
+//		return 1;
+//	}
+//	else if (k > 0)
+//	{
+//		return n * Pow(n,k-1);
+//	}
+//	else
+//	{
+//		return 1.0 / Pow(n, -k);
+//	}
+//}
+//int main()
+//{
+//	int num = 0;
+//	int k = 0;
+//	printf("请输入一个数字：");
+//	scanf("%u", &num);
+//	printf("请输入次方数：");
+//	scanf("%u", &k);
+//	double ret = Pow(num,k);
+//	printf("%d^%d=%lf\n", num,k,ret);
+//	return 0;
+//}
+
+//将数组A中的内容和数组B中的内容进行交换（数组一样大）
+//int main()
+//{
+//	int arr1[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int arr2[10] = { 10,9,8,7,6,5,4,3,2,1 };
+//	int i = 0;
+//	for (i = 0; i < 10; i++)
+//	{
+//		int tmp = arr1[i];
+//		arr1[i] = arr2[i];
+//		arr2[i] = tmp;
+//	}
+//	printf("arr1= ");
+//	for (i = 0; i < 10; i++)
+//	{
+//		printf("%d ", arr1[i]);
+//	}
+//	printf("\narr2= ");
+//	for (i = 0; i < 10; i++)
+//	{
+//		printf("%d ", arr2[i]);
+//	}
+//	return 0;
+//}
+
+
+
+//数组操作
+// 实现函数init（）把数组初始化为全0
+// 实现print（）打印数组的每个元素
+// 实现reverse（）函数，完成数组元素的逆置
+// 
+//
+//void init(int* p, int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		*(p + i) = 0;
+//	}
+//}
+//void print(int* p,int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", *(p + i));
+//	}
+//	printf("\n");
+//}
+//void reverse(int* p, int sz)
+//{
+//	int left = 0;
+//	int right = sz - 1;
+//	while (left < right)
+//	{
+//		int tmp = *(p + left);
+//		*(p + left) = *(p + right);
+//		*(p + right) = tmp;
+//		left++, right--;
+//	}
+//
+//}
+//int main()
+//{
+//	int arr[10] = { 1,2,3,4,5,6,7,8,9,10};
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	print(arr, sz);
+//	reverse(arr, sz);
+//	print(arr, sz);
+//	init(arr,sz);
+//	print(arr,sz);
+//	return 0;
+//}
+
 
 
 //int main()
