@@ -885,27 +885,27 @@
 //}
 //上一个函数有bug，当字符串为奇数个字符时不会出错，当为偶数个时，会出错，最中间的两个交换不了	
 //改正
-void reverse(char arr[], int left, int right)
-{
-	if (left < right)
-	{
-		char tmp = arr[left];
-		arr[left] = arr[right];
-		arr[right] = tmp;
-		reverse(arr, left + 1, right - 1);
-	}
-	
-	
-}
-int main()
-{
-	char arr[] = "abcdefg";
-	//reverse(arr);
-	int sz = strlen(arr);
-	reverse(arr,0,sz-1);
-	printf("%s\n", arr);
-	return 0;
-}
+//void reverse(char arr[], int left, int right)
+//{
+//	if (left < right)
+//	{
+//		char tmp = arr[left];
+//		arr[left] = arr[right];
+//		arr[right] = tmp;
+//		reverse(arr, left + 1, right - 1);
+//	}
+//	
+//	
+//}
+//int main()
+//{
+//	char arr[] = "abcdefg";
+//	//reverse(arr);
+//	int sz = strlen(arr);
+//	reverse(arr,0,sz-1);
+//	printf("%s\n", arr);
+//	return 0;
+//}
 
 //计算一个数的每一位数字之和(递归)
 //int DigSum(unsigned int num)
@@ -1034,6 +1034,205 @@ int main()
 //	return 0;
 //}
 
+//练习：编写代码，求一个整数在内存中1的个数
+////也就是求补码中1的个数
+////int a=3
+//// 00000000 00000000 00000000 00000011 3的补码
+////a&1
+//// 00000000 00000000 00000000 00000001 1的补码
+//// 00000000 00000000 00000000 00000001 3&1
+////通过上一段和下一段的规律可以发现 某个数和1按位与的结果，可以表示某个数最低位是0还是1
+//// 00000000 00000000 00000000 00000010
+//// 00000000 00000000 00000000 00000001 1的补码
+//// 00000000 00000000 00000000 00000000 某个数和1按位与的结果，可以表示某个数最低位是0还是1
+//
+//int main()
+//{
+//	int n = 0;
+//	int count = 0;
+//	printf("请输入一个数字：");
+//	scanf("%d",&n);
+//	int i = 0;
+//	printf("%d在内存中1的个数为",n);
+//	while (i < 32)
+//	{
+//		if ((n & 1) == 1)
+//		{
+//			count++;
+//		}
+//		n=n >> 1;
+//		i++;
+//	}
+//	printf("%d\n",count);
+//	return 0;
+//}
+
+
+//一道变态的面试题 不能创建临时变量，实现两个数字的交换
+//加减法
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	printf("交换前：a=%d  b=%d\n",a,b);
+//	a = a + b;
+//	b = a - b;
+//	a = a - b;
+//	printf("交换后：a=%d  b=%d\n", a, b);
+//	return 0;
+//}
+//上段代码有不完美的地方，如果a是一个很大的数字但没有超过int范围，b也是一个很大的数字但没有超过int范围
+// a+b超过了int的范围，那么就会溢出，此时就不能交换了；
+
+//改进
+
+//int main()
+//{
+//	int a =26;
+//	int b =33;
+//	printf("交换前：a=%d  b=%d\n", a, b);
+//	a = a - b;
+//	b = a + b;
+//	a = b-a;
+//	printf("交换后：a=%d  b=%d\n", a, b);
+//	return 0;
+//}
+
+//////另一种思路
+// 3^3
+// 011
+// 011
+// 000
+// a^a--> 0
+
+// 0^5
+// 000
+// 101
+// 101
+// 0^a-->a
+// 3^3^5 -->5
+
+//3^5^3
+// 3^5 011 101 110
+// 110^3(011) 101(5)
+// 可得 异或操作符支持交换律
+// 3^5^3==3^3^5 -->5
+//int main()
+//{
+//	int a = 3;
+//	int b = 5;
+//	printf("交换前：a=%d b=%d\n",a,b);
+//	a = a ^ b;
+//	b = a ^ b;
+//	a = a ^ b;
+//	printf("交换后：a=%d b=%d\n", a, b);
+//	return 0;
+//}
+
+
+//思考下边代码的打印结果
+//int main()
+//{
+//	int i = 0, a = 0, b = 2, c = 3, d = 4;
+//	//i = a++ && ++b && d++; //a为0 是假  后边的就不算了 但是判断完 a会自增
+//	i=a++||++b||d++;//a为0是假，然后自增，++b为真，所以后边不算了
+//	printf("a=%d\nb=%d\nc=%d\nd=%d\n",a,b,c,d);
+//
+//	return 0;
+//}
+
+
+
+
+//小乐乐走台阶，小乐乐上课需要走n阶台阶，因为他腿比较长，所以每次可以选择走一阶或者两阶，那么他一共有多少走法
+//假设 n为10，
+//假设第一步走了1个台阶，还剩stap（9）种走法
+//假设第一步走了2个台阶，还剩stap（8）种走法
+// stap（10）=stap（9）+stap（8）
+
+//int stap(int n)
+//{
+//	if (n<=2)
+//	{
+//		return n;
+//	}
+//	else
+//	{
+//		return (stap(n - 1) + stap(n - 2));
+//	}
+//}
+//int main()
+//{
+//	int n = 0;
+//	printf("请输入n的值： ");
+//	scanf("%d",&n);
+//	int ret = stap(n);
+//	printf("方法有%d种\n",ret);
+//	return 0;
+//}
+
+// 第一次输入数组的长度，第二次输入 数组的元素 第三次输入要删除的数字
+//int main()
+//{
+//	int n = 0;
+//	printf("请输入数组的长度：");
+//	scanf("%d",&n);
+//	int arr[50] = {0};
+//	int i = 0;
+//	int num = 0;
+//	printf("请输入数组的元素：");
+//	for (i = 0; i < n; i++)
+//	{
+//		scanf("%d",&arr[i]);
+//	}
+//	printf("请输入要删除的数字：");
+//	scanf("%d",&num);
+//	for (i = 0; i < n; i++)
+//	{
+//		if (arr[i] == num)
+//		{
+//			int j = 0;
+//			for (j = i; j <= n; j++)
+//			{
+//				arr[j] = arr[j + 1];
+//			}
+//			
+//		}
+//	}
+//	printf("删除后：");
+//	for (i = 0; i < n - 1; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+
+
+//输出五位数种的所有的水仙花数
+//水仙花数 1461 = 1*461+14*61+146*1
+//         655=6*55+65*5
+
+int main()
+{
+	int i = 0;
+	for (i = 10000; i <= 99999; i++)
+	{
+		//判断
+		int sum = 0;
+		int j = 0;
+		for (j = 1; j <= 4; j++)
+		{
+			int k=(int)pow(10, j);
+			sum = sum + (i / k) * (i % k);
+		}
+		if (sum == i)
+		{
+			printf("%d ",i);
+		}
+	}
+
+	return 0;
+}
 
 
 //int main()
@@ -1041,3 +1240,5 @@ int main()
 //
 //	return 0;
 //}
+
+
