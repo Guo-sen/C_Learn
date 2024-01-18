@@ -1,0 +1,3 @@
+﻿  test.c
+D:\C语言\结构体\test.c(80,16): warning C4305: “初始化”: 从“double”到“float”截断
+  结构体.vcxproj -> D:\C语言\结构体\x64\Debug\结构体.exe
