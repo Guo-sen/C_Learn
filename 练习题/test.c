@@ -1479,28 +1479,350 @@
 //输入年份和月份，计算这一年这个月有多少天
 //注意闰年的二月，其他都一样
 
-int is_leap_year(int y)
-{
-	return (((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0));
+//int is_leap_year(int y)
+//{
+//	return (((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0));
+//
+//}
+//int main()
+//{
+//	int y = 0;
+//	int m = 0;
+//	int d = 0;
+//	int days[13] = { 0,31,28,31,30,31,30,31,31,30,31,30,31 };
+//	while (scanf("%d%d", &y, &m) == 2)//scanf成功输入几个数返回几
+//	{
+//		int d = days[m];
+//		if (is_leap_year(y) == 1&&m==2)
+//		{
+//			d++;
+//		}
+//		printf("%d\n",d);
+//	}
+//	return 0;
+//}
 
-}
+// 模拟实现strcpy
+//void my_strcpy(char* dest, char* sour)
+//{
+//	while (*sour!='\0')
+//	{
+//		*dest = *sour;
+//		dest++;
+//		sour++;
+//	}
+//	*dest = *sour;
+//}
+
+//优化
+//void my_strcpy(char* dest, char* sour)
+//{
+//	while (*sour != '\0')
+//	{
+//		*dest++ = *sour++;
+//	}
+//	*dest = *sour;
+//}
+
+//优化
+//void my_strcpy(char* dest, char* sour)
+//{
+//	while (*dest++ = *sour++)
+//	{
+//		;
+//	}
+//}
+
+//对于const的补充
+//int main()
+//{
+//	const int num = 10;
+//	int n = 20;
+//	//num = 20;//改不掉
+//	//int* p = &num;
+//	//*p = 20;//可以改掉
+//	
+//	//const修饰指针
+//	//1.const 放在*号左边的时候，const int* p(等价于int const* p)
+//	//p指向的内容不可以通过p来改变，p自身可以改 const修饰的是*p
+//	//const int* p = &num;
+//	////*p = 20; //不能改
+//	//p = &n;//p本身能改
+//	//2.const 放在*右边，int* const p;
+//	//意思是p指向的对象可以通过p来修改，但是不能修改p变量本身的值
+//	int* const p = &num;
+//	*p = 50;//可以
+//	//p = &n;//不可以
+//	//如果在*两边都加上const，那么两层意思就都具有了
+//	printf("%d\n",num);
+//	return 0;
+//}
+// 
+//优化
+//#include<assert.h>
+//void my_strcpy(char* dest, const char* sour)
+//{
+//	//断言
+//	assert(sour!=NULL);
+//	assert(dest != NULL);
+//
+//	while (*dest++ = *sour++)
+//	//while (*sour++ = *dest++) //在char* sour前+ const 可以避免写反，写反时会报错
+//	{
+//		;
+//	}
+//}
+//int main()
+//{
+//	char arr1[20] = " ";
+//	char arr2[] = "hello world";
+//	my_strcpy(arr1,arr2);
+//	printf("%s\n", arr1);
+//	my_strcpy(arr1, NULL); 
+//	return 0;
+//}
+
+
+//#include<assert.h>
+////写成char*的作用是为了实现链式访问，strcpy返回的是目标空间的起始地址
+//char* my_strcpy(char* dest, const char* sour)
+//{
+//	char* ret = dest;
+//	//断言
+//	assert(sour!=NULL);
+//	assert(dest != NULL);
+//	while (*dest++ = *sour++)
+//	//while (*sour++ = *dest++) //在char* sour前+ const 可以避免写反，写反时会报错
+//	{
+//		;
+//	}
+//	return ret;
+//}
+//int main()
+//{
+//	char arr1[20] = " ";
+//	char arr2[] = "hello world";
+//	printf("%s\n", my_strcpy(arr1, arr2));//链式访问的一个例子，作为printf函数的参数
+//	printf("%s\n", arr1);
+//	return 0;
+//}
+// 
+// 
+
+
+//模拟实现strlen
+//#include<assert.h>
+//int my_strlen(const char* str)
+//{
+//	assert(str!=NULL);
+//	int count = 0;
+//	while (*str != '\0')
+//	{
+//		count++;
+//		str++;
+//	}
+//	return count;
+//}
+//int main()
+//{
+//	char arr[] = "hello world";
+//	int len= my_strlen(arr);
+//	printf("len=%d\n",len);
+//	return 0;
+//}
+
+//输入三个数，判断三条边能不能构成三角形，如果能构成，判断三角形的类型（普通，等腰，等边）
+
+//int main()
+//{
+//	int a = 0;
+//	int b = 0;
+//	int c = 0;
+//	while (scanf("%d %d %d", &a, &b, &c) == 3)
+//	{
+//		if (a + b > c && a + c > b && b + c > a)
+//		{
+//			if (a == b && b == c)
+//			{
+//				printf("等边三角形\n");
+//			}
+//			else if ((a == b && b != c) || (a == c && b != c) || (b == c && b != a))
+//			{
+//				printf("等腰三角形\n");
+//			}
+//			else
+//			{
+//				printf("普通三角形\n");
+//
+//			}
+//
+//		}
+//		else
+//		{
+//			printf("不是三角形\n");
+//		}
+//	}
+//	return 0;
+//}
+
+//思考下列代码打印结果
+//0x 00 00 00 01
+//0x 00 00 00 02
+//0x 00 00 00 03
+//0x 00 00 00 04 
+//一个整型有四个字节，在内存中存的时候是倒着存的 01 00 00 00 02 00 00 00 03 00 00 00 04 00 00 00
+//												地址由低到高
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5 };
+//	short* p = (short*)arr;
+//	int i = 0;
+//	for (i = 0; i < 4; i++)
+//	{
+//		*(p + i) = 0;
+//	}
+//	for (i = 0; i < 5; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+
+
+//字符串逆序
+//int main()
+//{	
+//	char arr[10001] = {0};
+//	//scanf("%s",arr);//遇到空格就不读了
+//	gets(arr);
+//	//逆序
+//	int left=0;
+//	int right = strlen(arr) - 1;
+//	while (left < right)
+//	{
+//		char tmp;
+//		tmp = arr[left];
+//		arr[left] = arr[right];
+//		arr[right] = tmp;
+//		left++;
+//		right--;
+//
+//	}
+//	printf("%s\n", arr);
+//	return 0;
+//}
+
+//求和：计算sum=a+aa+aaa+aaaa+aaaaa的前五项之和，a是一个整数
+
+//int main()
+//{
+//	int a = 0;
+//	int n = 5;
+//	scanf("%d", &a);
+//	int i = 0;
+//	int k = 0;
+//	int sum = 0;
+//	for (i = 0; i < n; i++)
+//	{
+//		k = k * 10 + 2;
+//		sum = sum + k;
+//	}
+//	printf("%d\n", sum);
+//	return 0;
+//}
+
+//水仙花数变种问题
+//输出0~100000之间所有的"水仙花数"
+//"水仙花数"是指一个n位数，其各位数字的n次方之和刚好等于该数本身
+
+//int main()
+//{
+//	int i = 0;
+//	for (i = 0; i <= 100000; i++)
+//	{
+//		//1.要确定i是几位数
+//		int n = 1;
+//		int tmp = i;
+//		int sum = 0;
+//		while (tmp/10)
+//		{
+//			n++;
+//			tmp /= 10;
+//		}
+//		//2.得到i的每一位
+//		tmp = i;
+//		while (tmp)
+//		{
+//			sum += pow(tmp % 10, n);
+//			tmp /= 10;
+//		}
+//		if (sum == i)
+//		{
+//			printf("%d ",sum);
+//		}
+//	}
+//	return 0;
+//}
+
+
+//打印菱形
+//      *
+//     ***
+//    *****
+//   *******
+//  *********
+// ***********
+//*************
+// ***********
+//  *********
+//   *******
+//    *****
+//     ***
+//      *
+
 int main()
 {
-	int y = 0;
-	int m = 0;
-	int d = 0;
-	int days[13] = { 0,31,28,31,30,31,30,31,31,30,31,30,31 };
-	while (scanf("%d%d", &y, &m) == 2)//scanf成功输入几个数返回几
+	int line = 0;
+	scanf("%d", &line);
+	//上半部分
+	int i = 0;
+	for (i = 0; i < line; i++)
 	{
-		int d = days[m];
-		if (is_leap_year(y) == 1&&m==2)
+		//打印1行
+		//打印空格
+		int j = 0;
+		for (j=0; j < line - 1 - i;j++)
 		{
-			d++;
+			printf(" ");
 		}
-		printf("%d\n",d);
+		//打印*		
+		for (j = 0; j < 2*i+1;j++)
+		{
+			printf("*");
+		}
+		printf("\n");
+	}
+	//下半部分
+	for (i = 0; i < line-1; i++)
+	{
+		//打印1行
+			//打印空格
+		int j = 0;
+		for (j = 0; j <=i; j++)
+		{
+			printf(" ");
+		}
+		//打印*		
+		for (j = 0; j <2*(line-1-i)-1; j++)
+		{
+			printf("*");
+		}
+		printf("\n");
+
 	}
 	return 0;
 }
+	
 
 //int main()
 //{
