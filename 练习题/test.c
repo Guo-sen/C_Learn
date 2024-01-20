@@ -1865,8 +1865,116 @@
 //}
 
 
+//喝汽水问题：一瓶汽水一元，两个控盘可以换一瓶汽水，给二十元，可以喝多少汽水
+
+//
+//int main()
+//{
+//	int money = 20;
+//	int total = money;
+//	int empty = money;
+//
+//	//置换
+//	while (empty>=2)
+//	{
+//		total += empty / 2;
+//		empty = empty / 2 + empty % 2;//换来的+上一次手里剩下的
+//	}
+//	printf("%d\n", total);
+//	return 0;
+//}
+
+//int year=1009; *p=&year; 下列变量中，不能使year增加至1010的是
+//  *p+=1
+// （*p）++；
+//  ++（*p）
+//  *p++；
+// *p++不能，++作用在了p上，先*p，后p=p+1
 
 
+
+//最小公倍数
+
+//输入正整数a和正整数b，输出它们的最小公倍数
+//最简单的思路，a和b的最小公倍数最小也是那个较大的数，可以试除另一个数，不行就一直+1试除。
+//int main()
+//{
+//	int a = 0;
+//	int b = 0;
+//	scanf("%d %d",&a,&b);
+//	int m = (a > b ? b : b);
+//	for (;; m++)
+//	{
+//		if (m % a == 0 && m % b == 0)
+//		{
+//			printf("%d\n",m);
+//			break;
+//		}
+//	}
+//	return 0;
+//}
+
+//另一种思路
+//假设m是a和b的最小公倍数，那么  a*i = b*j= m
+// a*1 看看能不能整除b，不能就a*2 再看看能不能整除b 不能就a*3 直到找到
+//int main()
+//{
+//	int i = 1;
+//	int a = 0;
+//	int b = 0;
+//	scanf("%d %d",&a,&b);
+//	for (i = 1;; i++)
+//	{
+//		if ((a * i) % b == 0)
+//		{
+//			break;
+//		}
+//	}
+//	printf("%d\n", a*i);
+//
+//	return 0;
+//}
+
+//将一句话的单词倒置，标点不倒置：I like beijing. 输出 beijing.like I
+//思路 先整体逆序：  .gnijieb ekil I
+//再把每个单词逆序： beijing. like I
+void reverse(char* left, char* right)
+{
+	while (left < right)
+	{
+		char tmp = *left;
+		*left = *right;
+		*right = tmp;
+		left++;
+		right--;
+	}
+}
+int main()
+{
+	char arr[101] = { 0 };
+	gets(arr);
+	int len = strlen(arr)-1;
+	//逆序整个字符串
+	reverse(arr,arr+len);
+	//逆序每个单词
+	char* start = arr;
+	while (*start!='\0')
+	{
+		char* end = start;
+		while (*end!=' '&&*end!='\0')
+		{
+			end++;
+		}
+		reverse(start, end - 1);
+		if (*end != '\0')
+		{
+			end++;
+		}
+		start = end;
+	}
+	printf("%s\n", arr);
+	return 0;
+}
 
 //int main()
 //{
