@@ -1,0 +1,4 @@
+﻿  test.c
+D:\C语言\指针进阶\test.c(244,14): warning C4098: “Add”:“void”函数返回值
+D:\C语言\指针进阶\test.c(256,7): warning C4133: “函数”: 从“void (__cdecl *)(int,int)”到“int (__cdecl *)(int,int)”的类型不兼容
+  指针进阶.vcxproj -> D:\C语言\指针进阶\x64\Debug\指针进阶.exe

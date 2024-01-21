@@ -2030,60 +2030,137 @@
 
 //有序序列合并
 //输入两个升序排列的序列，将两个序列合并成一个有序序列并输出
+//int main()
+//{
+//	int n = 0;
+//	int m = 0;
+//	int arr1[100] = { 0 };
+//	int arr2[100] = { 0 };
+//	scanf("%d %d", &n, &m);
+//	int i = 0;
+//	for (i = 0; i < n; i++)
+//	{
+//		scanf("%d",&arr1[i]);
+//	}
+//	for (i = 0; i < m; i++)
+//	{
+//		scanf("%d", &arr2[i]);
+//	}
+//	//合并打印
+//	int j = 0;
+//	int k = 0;
+//
+//	while (j < n && k < m)
+//	{
+//		if (arr1[j] < arr2[k])
+//		{
+//			printf("%d ", arr1[j]);
+//			j++;
+//		}
+//		else
+//		{
+//			printf("%d ", arr2[k]);
+//			k++;
+//
+//		}
+//	}
+//	if (j < n)
+//	{
+//		for (; j < n; j++)
+//		{
+//			printf("%d ", arr1[j]);
+//		}
+//	}
+//	else
+//	{
+//		for (; k < m; k++)
+//		{
+//			printf("%d ", arr2[k]);
+//		}
+//	}
+//	return 0;
+//}
+
+//设计一个小程序来判断当前机器的字节序
+//int main()
+//{
+//	int a = 1;//0x00000001
+//	char* pc= &a;
+//	if (*pc == 1)
+//	{
+//		printf("小端\n");
+//	}
+//	else
+//	{
+//		printf("大端\n");
+//	}
+//	return 0;
+//}
 
 
+//思考下列代码打印结果
+//int main()
+//{
+//	char a = -1;				//-1放的时候会发生截断
+//	signed char b = -1;			
+//	unsigned char c = -1;		
+//	printf("%d %d %d\n",a,b,c);//打印的时候会发生整型提升
+//	return 0;
+//}
 
 
-int main()
-{
-	int n = 0;
-	int m = 0;
-	int arr1[100] = { 0 };
-	int arr2[100] = { 0 };
-	scanf("%d %d", &n, &m);
-	int i = 0;
-	for (i = 0; i < n; i++)
-	{
-		scanf("%d",&arr1[i]);
-	}
-	for (i = 0; i < m; i++)
-	{
-		scanf("%d", &arr2[i]);
-	}
-	//合并打印
-	int j = 0;
-	int k = 0;
+//int main()
+//{
+//	char a = -128;
+//	//10000000 00000000 00000000 10000000 -128原码
+//	//11111111 11111111 11111111 01111111
+//	//11111111 11111111 11111111 10000000 -128补码
+//	//10000000 截断后放进a
+//
+//	//无符号整型打印发生整型提升
+//	//11111111 11111111 11111111 10000000
+//	printf("%u\n",a);
+//	return 0;
+//}
 
-	while (j < n && k < m)
-	{
-		if (arr1[j] < arr2[k])
-		{
-			printf("%d ", arr1[j]);
-			j++;
-		}
-		else
-		{
-			printf("%d ", arr2[k]);
-			k++;
+//int main()
+//{
+//	int i = -20;
+//	unsigned int j = 10;
+//	printf("%d\n",i+j);
+//	return 0;
+//}
 
-		}
-	}
-	if (j < n)
-	{
-		for (; j < n; j++)
-		{
-			printf("%d ", arr1[j]);
-		}
-	}
-	else
-	{
-		for (; k < m; k++)
-		{
-			printf("%d ", arr2[k]);
-		}
-	}
-	return 0;
-}
+
+//  int main()
+//{
+//	  char arr[1000];
+//	  int i = 0;
+//	  for (i = 0; i < 1000; i++)
+//	  {
+//		  arr[i] = -1 - i;
+//	  }
+//	  //-1 -2......-128 127 126 ...0 -1 -2......
+//	  printf("%d", strlen(arr));
+//	return 0;
+//}
+ //arr每个元素是char类型-128~127，再大的数字往里放都会发生截断成为-128~127之间的数字
+
+//int main()
+//{
+//	if (strlen("abc") - strlen("abcdef") >= 0)
+//	{
+//		printf("hehe\n");
+//	}
+//	else
+//	{
+//		printf("haha\n");
+//	}
+//	return 0;
+//}
+//strlen返回值是size_t-->unsigned int 无符号数和无符号数的运算结果还是无符号数
+
+
 
 //
 //int main()
