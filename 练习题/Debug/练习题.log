@@ -1,3 +1,2 @@
 ﻿  test.c
-D:\C语言\练习题\test.c(1955,2): warning C4013: “gets”未定义；假设外部返回 int
   练习题.vcxproj -> D:\C语言\练习题\Debug\练习题.exe

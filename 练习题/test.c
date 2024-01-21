@@ -1938,44 +1938,154 @@
 //将一句话的单词倒置，标点不倒置：I like beijing. 输出 beijing.like I
 //思路 先整体逆序：  .gnijieb ekil I
 //再把每个单词逆序： beijing. like I
-void reverse(char* left, char* right)
-{
-	while (left < right)
-	{
-		char tmp = *left;
-		*left = *right;
-		*right = tmp;
-		left++;
-		right--;
-	}
-}
+//void reverse(char* left, char* right)
+//{
+//	while (left < right)
+//	{
+//		char tmp = *left;
+//		*left = *right;
+//		*right = tmp;
+//		left++;
+//		right--;
+//	}
+//}
+//int main()
+//{
+//	char arr[101] = { 0 };
+//	gets(arr);
+//	int len = strlen(arr)-1;
+//	//逆序整个字符串
+//	reverse(arr,arr+len);
+//	//逆序每个单词
+//	char* start = arr;
+//	while (*start!='\0')
+//	{
+//		char* end = start;
+//		while (*end!=' '&&*end!='\0')
+//		{
+//			end++;
+//		}
+//		reverse(start, end - 1);
+//		if (*end != '\0')
+//		{
+//			end++;
+//		}
+//		start = end;
+//	}
+//	printf("%s\n", arr);
+//	return 0;
+//}
+
+
+//调整奇数偶数顺序，调整数组，使奇数全部位于偶数前面
+
+//void move_arr(int* pa, int sz)
+//{
+//	int* left = pa;
+//	int* right = pa + sz-1;
+//	
+//	while (left<right)
+//	{
+//		//从左向右找一个偶数,停下来
+//		while ((left<right) && *left % 2 == 1)//避免越界
+//		{
+//			left++;
+//		}
+//		//从右向左找一个奇数，停下来
+//		while ((left < right) && *right % 2 == 0)
+//		{
+//			right++;
+//		}
+//		//交换
+//		if (left < right)
+//		{
+//			int tmp = 0;
+//			tmp = *left;
+//			*left = *right;
+//			*right = tmp;
+//			left++, right--;
+//		}
+//	}
+//}
+//
+//int main()
+//{	
+//	int arr[10] = { 0 };
+//	int i = 0;
+//	
+//	for (i = 0; i < 10; i++)
+//	{
+//		scanf("%d", &arr[i]);
+//	}
+//
+//	//调整
+//	move_arr(arr, 10);
+//	
+//	for (i = 0; i < 10; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+
+//有序序列合并
+//输入两个升序排列的序列，将两个序列合并成一个有序序列并输出
+
+
+
+
 int main()
 {
-	char arr[101] = { 0 };
-	gets(arr);
-	int len = strlen(arr)-1;
-	//逆序整个字符串
-	reverse(arr,arr+len);
-	//逆序每个单词
-	char* start = arr;
-	while (*start!='\0')
+	int n = 0;
+	int m = 0;
+	int arr1[100] = { 0 };
+	int arr2[100] = { 0 };
+	scanf("%d %d", &n, &m);
+	int i = 0;
+	for (i = 0; i < n; i++)
 	{
-		char* end = start;
-		while (*end!=' '&&*end!='\0')
-		{
-			end++;
-		}
-		reverse(start, end - 1);
-		if (*end != '\0')
-		{
-			end++;
-		}
-		start = end;
+		scanf("%d",&arr1[i]);
 	}
-	printf("%s\n", arr);
+	for (i = 0; i < m; i++)
+	{
+		scanf("%d", &arr2[i]);
+	}
+	//合并打印
+	int j = 0;
+	int k = 0;
+
+	while (j < n && k < m)
+	{
+		if (arr1[j] < arr2[k])
+		{
+			printf("%d ", arr1[j]);
+			j++;
+		}
+		else
+		{
+			printf("%d ", arr2[k]);
+			k++;
+
+		}
+	}
+	if (j < n)
+	{
+		for (; j < n; j++)
+		{
+			printf("%d ", arr1[j]);
+		}
+	}
+	else
+	{
+		for (; k < m; k++)
+		{
+			printf("%d ", arr2[k]);
+		}
+	}
 	return 0;
 }
 
+//
 //int main()
 //{
 //
