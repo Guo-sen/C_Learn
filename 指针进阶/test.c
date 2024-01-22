@@ -240,7 +240,7 @@
 //}
 
 //函数指针可以让一个函数调用另一个函数
-//void Add(int x,int y)
+// void Add(int x,int y)
 //{
 //	return x + y;
 //}
@@ -257,6 +257,45 @@
 //	calc(Add);
 //	return 0;
 //}
+
+//另一个用途参考计算器（合理的使用函数指针可以减少代码冗余）
+//可以实现函数回调，给1个函数传不同的参数，这个函数的功能可以不一样
+
+
+
+//int main()
+//{
+//	//分析两段代码
+//	//
+//	(*( void(*)() ) 0 ) (); //void(*)() 表示某一种函数指针类型，
+//							//（ void(*)() ）0，表示把0强制类型转换成那种类型，这时，可以把0看成一个地址
+//							//然后把地址解引用，找到0转换后的地址所指的函数，去调用那个函数，那个函数没有参数
+//	//以上代码是一次函数调用
+//
+//	void (* signal(int, void(*)(int)))(int);
+//	//以上代码是一次函数声明
+//	//signal(int, void(*)(int)   signal是一个函数名，signal这个函数有两个参数
+//	//分别是整型int和函数指针类型void(*)(int)，如果把函数名和后边的参数去掉
+//	// 可以发现剩下一个函数指针类型void （*）（int），这就是signal函数的返回类型
+//	return 0;
+//}
+//void (* signal(int, void(*)(int)))(int); 改写成易于理解的形式
+//typedef void(*)(int) pf_t; //这样写是不对的
+//typedef void(*pf_t)(int);//把void(*)(int)重命名为 pf_t
+//int main()
+//{
+//	pf_t signal(int, pf_t);//void (* signal(int, void(*)(int)))(int); 的简写
+//	return 0;
+//}
+
+//函数指针数组
+
+
+
+
+
+
+
 
 
 //int main()
