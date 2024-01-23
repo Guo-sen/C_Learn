@@ -443,8 +443,8 @@ struct Stu
 };
 int com_by_age(const void* e1, const void* e2)
 {
-	//strcmp返回值恰好是>0  ==0  <0
-	return ((struct Stu*)e1)->age - ((struct Stu*)e2)->age;
+
+	//return ((struct Stu*)e1)->age - ((struct Stu*)e2)->age;
 }
 
 void Swap(char* buff1,char*buff2,int width)
