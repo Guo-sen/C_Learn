@@ -1,3 +1,2 @@
 ﻿  test.c
-D:\C语言\指针进阶\test.c(448): warning C4716: “com_by_age”: 必须返回一个值
   指针进阶.vcxproj -> D:\C语言\指针进阶\x64\Debug\指针进阶.exe

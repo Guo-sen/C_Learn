@@ -113,7 +113,7 @@ void bubble_sort(void* arr, int sz, int width, int (*campare)(const void* e1, co
 
 int main()
 {
-	struct Stu s[4] = { {"张三",18},{"李四",16},{"王五",19},{"LL",3} };
+	struct Stu s[] = { {"张三",18},{"李四",16},{"王五",19} };
 	int sz = sizeof(s) / sizeof(s[0]);
 	bubble_sort(s, sz, sizeof(s[0]), comp_by_age);
 	int i = 0;
@@ -121,6 +121,7 @@ int main()
 	{
 		printf("%s  %d\n", s[i].name, s[i].age);
 	}
-
 	return 0;
 }
+
+

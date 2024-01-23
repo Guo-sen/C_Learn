@@ -443,8 +443,7 @@ struct Stu
 };
 int com_by_age(const void* e1, const void* e2)
 {
-
-	//return ((struct Stu*)e1)->age - ((struct Stu*)e2)->age;
+	return ((struct Stu*)e1)->age - ((struct Stu*)e2)->age;
 }
 
 void Swap(char* buff1,char*buff2,int width)
@@ -476,14 +475,12 @@ void bubble_sort (void* arr, int sz, int width, int (*cmp)(const void* e1, const
 				Swap((char*)arr + j * width, (char*)arr + (j + 1) * width,width);
 				flag = 0;
 			}
-		
 		}
-		if (flag == 0)
+		if (flag == 1)
 		{
 			break;
 		}
 	}
-	
 }
 int main()
 {
