@@ -2434,15 +2434,344 @@
 
 //杨氏矩阵
 //有一个数字矩阵，矩阵的每行从左到右是递增的，矩阵从上到下是递增的，请编写程序在这样的矩阵中查找某个数字是否存在
-//要求时间复杂度小于 O（N）；
+//要求时间复杂度小于 O（N）；(假设有n个元素，最坏的情况需要找n次，这个程序的时间复杂度就是o（n）)
+
+//1 2 3
+//4 5 6
+//7 8 9 
+// 
+
+//struct Point
+//{
+//	int x, y;
+//};
+//
+//struct Point find_num(int arr[3][3], int row, int col, int n)
+//{
+//	int x = 0;
+//	int y = col - 1;
+//	struct Point p = { -1,-1 };
+//	while (x<=row-1&&y>=0)
+//	{
+//		if (n < arr[x][y])
+//		{
+//			y--;//比右上角的数字小，说明肯定不在那一列了，以后不需要查找那一列了
+//		}
+//		else if (n > arr[x][y])
+//		{
+//			x++;// 比右上角的数字大，说明肯定不在那一行了，以后不需要查找那一行了
+//		}
+//		else
+//		{
+//			p.x = x;
+//			p.y = y;
+//			return p;
+//		}
+//	}
+//	return p;
+//}
+//int main()
+//{
+//	int arr[3][3] = { {1,2,3},{4,5,6},{7,8,9} };
+//	int n = 0;
+//	printf("请输入要查找的数：");
+//	scanf("%d", &n);
+//	struct Point p=find_num(arr, 3, 3, n);
+//	printf("%d %d\n",p.x,p.y);//找到了返回1，找不到返回0
+//	return 0;
+//}
+
+
+//int find_num(int arr[3][3], int* px, int* py, int n)
+//{
+//	int x = 0;
+//	int y = *py - 1;
+//	
+//	while (x <= *px - 1 && y >= 0)
+//	{
+//		if (n < arr[x][y])
+//		{
+//			y--;//比右上角的数字小，说明肯定不在那一列了，以后不需要查找那一列了
+//		}
+//		else if (n > arr[x][y])
+//		{
+//			x++;// 比右上角的数字大，说明肯定不在那一行了，以后不需要查找那一行了
+//		}
+//		else
+//		{
+//			*px = x;
+//			*py = y;
+//			return 1;
+//		}
+//	}
+//
+//	*px = -1, * py = -1;
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[3][3] = { {1,2,3},{4,5,6},{7,8,9} };
+//	int n = 0;
+//	printf("请输入要查找的数：");
+//	scanf("%d", &n);
+//	int x = 3; //		行数
+//	int y = 3;//        列数
+//	int ret= find_num(arr, &x, &y, n);
+//	if (ret == 1)
+//	{
+//		printf("找到了，下标为%d %d\n", x, y);
+//	}
+//	else
+//	{
+//		printf("找不到\n");
+//	}
+//	return 0;
+//}
+
+
+//给两个字符串，判断第二个是否是由第一个字符旋转之后的字符串
+//思路1：把arr1，旋转1个字符和arr2比一下，看看相同不相同，如果不相同，就arr1旋转两次，比一下...穷举
+//int is_left_move(char arr1[], char arr2[])
+//{
+//	int len = strlen(arr1);
+//	int i = 0;
+//	for (i = 0; i < len; i++)
+//	{
+//		char tmp = arr1[0];
+//		int j = 0;
+//		for (j = 0; j < len - 1; j++)
+//		{
+//			arr1[j] = arr1[j + 1];
+//		}
+//		arr1[len - 1] = tmp;
+//		if (strcmp(arr1, arr2) == 0)
+//		{
+//			return 1;
+//		}
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	char arr1[] = "abcdef";
+//	char arr2[] = "cdefab";
+//
+//	//判断arr2是否可以通过arr1旋转得到
+//	int ret = is_left_move(arr1,arr2);
+//	if (ret == 1)
+//	{
+//		printf("OK\n");
+//	}
+//	else
+//	{
+//		printf("NO\n");
+//	}
+//	return 0;
+//}
+
+//思路2，arr1在后边追加一个自己，那么此时arr1就涵盖了所有的旋转可能的子串
+
+//int is_left_move(char arr1[], char arr2[])
+//{
+//	int len1 = strlen(arr1);
+//	int len2 = strlen(arr1);
+//	if (len1 != len2) //如果两个字符串长度不相等，绝对不可能是旋转得到，没有这个限制条件会有bug	
+//	{
+//		return 0;
+//	}
+//	strncat(arr1, arr1, len1);
+//	char* ret=strstr(arr1, arr2);
+//	if (ret == NULL)
+//	{
+//		return 0;
+//	}
+//	else 
+//	{
+//		return 1;
+//	}
+//}
+//int main()
+//{
+//	char arr1[20] = "abcdef"; //abcdefabcdef
+//	char arr2[] = "cdefab";
+//	int ret = is_left_move(arr1, arr2);
+//	if (ret == 1)
+//	{
+//		printf("OK\n");
+//	}
+//	else
+//	{
+//		printf("NO\n");
+//	}
+//	return 0;
+//}
 
 
 
-int main()
-{
+//矩阵转置，输入两个整数n和m，表示一个矩阵有n行和m列 ，从第二行到第n+1行，每行输入m个整数，用空格分隔开，
+//表示矩阵中的元素，然后输出m行n列，输出的内容为转置后的矩阵
 
-	return 0;
-}
+//转置前：
+//1 2 3
+//4 5 6
+//
+//转置后：
+//1 4
+//2 5
+//3 6
+
+//int main()
+//{
+//	int n = 0;
+//	int m = 0;
+//	int arr[10][10] = { 0 };
+//	scanf("%d %d", &n, &m);
+//	int i = 0;
+//	int j = 0;
+//	//输入矩阵
+//	for (i = 0; i < n; i++)
+//	{
+//		for (j = 0; j < m; j++)
+//		{
+//			scanf("%d", &arr[i][j]);
+//		}
+//		printf("\n");
+//	}
+//
+//	printf("-----------------------------------\n");
+//	//输出矩阵
+//	for (i = 0;i<m; i++)
+//	{
+//		for (j = 0; j < n; j++)
+//		{
+//			printf("%d ", arr[j][i]);
+//		}
+//		printf("\n");
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+//上三角矩阵的判断
+//上三角矩阵，即主对角线以下的元素都为0，主对角线为左上角到右下角
+//
+//eg： 输入3
+//         1 2 3
+//         0 4 5
+//         0 0 6
+//输出 ：YES
+//1 0
+//2 0 2 1
+//纵对角线下的坐标，纵坐标<横坐标
+
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	int arr[10][10] = { 0 };
+//	int i = 0;
+//	int flag = 1;//标记，假设是上三角
+//	for (i = 0; i < n; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < n; j++)
+//		{
+//			scanf("%d", &arr[i][j]);
+//		}
+//		printf("\n");
+//	}
+//	//判断
+//	for (i = 0; i < n; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < i; j++)
+//		{
+//			if (arr[i][j] != 0)
+//			{
+//				flag = 0;
+//				goto end;
+//			}
+//		}
+//		
+//	}
+//   end:
+//	if (flag == 0)
+//	{
+//		printf("NO\n");
+//	}
+//	else
+//	{
+//		printf("YES\n");
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+// 有序序列的判断
+//输入一个整数序列判断是否为有序序列（指序列中的数从大到小排列或者从小到大，相同也看作有序）
+
+//第一行输入一个整数N，第二行输入N个整数
+//int main()
+//{
+//	int n = 0;
+//	int arr[50] = { 0 };
+//	scanf("%d", &n);
+//	int flag1 = 0;
+//	int flag2 = 0;
+//	int i = 0;
+//	for (i = 0; i < n; i++)
+//	{
+//		scanf("%d", &arr[i]);
+//		if (i > 0)
+//		{
+//			if (arr[i] > arr[i - 1])
+//			{
+//				flag1 = 1;
+//			}
+//			else if(arr[i]<arr[i-1])
+//			{
+//				flag2 = 1;
+//			}
+//			else
+//			{
+//				;
+//			}
+//		}
+//	}
+//	//如果是升序，把flag1置为1
+//	//如果是降序，把flag2置为1
+//
+//
+//
+//	//判断
+//	//如果flag1为1，flag2为0，是升序
+//	//如果flag1为0，flag2为1，是降序
+//	//如果flag1为1，flag2为1，无序
+//	//如果都为0，所有元素都相同，是有序
+//	if (flag1 + flag2 <=1)
+//	{
+//		printf("有序\n");
+//	}
+//	else
+//	{
+//		printf("无序\n");
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+
+
+
 
 
 
