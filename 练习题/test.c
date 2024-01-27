@@ -2096,6 +2096,31 @@
 //	}
 //	return 0;
 //}
+//另一种写法
+//int test()
+//{
+//	union Un
+//	{
+//		char c;
+//		int i;
+//	}u;
+//	u.i = 1;
+//	return u.c;
+//}
+//
+//int main()
+//{
+//	int ret = test();
+//	if (ret == 1)
+//	{
+//		printf("小端\n");
+//	}
+//	else
+//	{
+//		printf("大端\n");
+//	}
+//	return 0;
+//}
 
 
 //思考下列代码打印结果
