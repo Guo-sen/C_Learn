@@ -1,6 +1,7 @@
 #pragma once
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define MAX 100
 #define MAX_NAME 20
@@ -28,4 +29,10 @@ void InitContact(Contact* pc);  //初始化通讯录
 void AddContact(Contact* pc);  //增加联系人
 void ShowContact (const Contact* pc); //打印通讯录信息
 
+void DelContact(Contact* pc);//删除通讯录信息
 
+void SearchContact(Contact* pc);//查找指定联系人
+
+void ModifyContact (Contact* pc);//修改指定联系人信息
+
+void SortContact(Contact* pc); //排序通讯录信息

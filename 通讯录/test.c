@@ -44,15 +44,19 @@ int main()
 			AddContact(&con);
 			break;
 		case 2:
+			DelContact(&con);
 			break;
 		case 3:
+			SearchContact(&con);
 			break;
 		case 4:
+			ModifyContact(&con);
 			break;
 		case 5:
 			ShowContact(&con);
 			break;
 		case 6:
+			SortContact(&con);
 			break;
 		case 0:
 			printf("ÍË³ö\n");
