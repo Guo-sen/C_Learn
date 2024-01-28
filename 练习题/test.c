@@ -2795,6 +2795,242 @@
 
 
 
+//几个经典的笔试题
+//
+
+// 思考调用test函数会出现什么结果
+//void GetMemory(char* p)
+//{
+//	p = (char*)malloc(100);
+//}
+//void test()
+//{
+//	char* str = NULL;
+//	GetMemory(str);
+//	strcpy(str, "hello world");
+//	printf("%s\n",str);
+//}
+//int main()
+//{
+//	test();
+//	return 0;
+//}
+
+//str的值为NULL，传过去的也是NULL
+//出来GetMemort函数后，p也被销毁了，存在内存泄露
+//str是空指针，解引用的时候会崩溃
+
+//改正
+//
+//void GetMemory(char** p)
+//{
+//	*p = (char*)malloc(100);
+//}
+//void test()
+//{
+//	char* str = NULL;
+//	GetMemory(&str);
+//	strcpy(str, "hello world");
+//	printf("%s\n",str);
+//	free(str);
+//	str = NULL;
+//}
+//
+//int main()
+//{
+//	test();
+//	return 0;
+//}
+
+//另一种改正方式：
+//char* GetMemory()
+//{
+//	char* p;
+//	p = (char*)malloc(100);
+//	return p;
+//}
+//void test()
+//{
+//	char* str = NULL;
+//	str=GetMemory();
+//	strcpy(str, "hello world");
+//	printf("%s\n", str);
+//	free(str);
+//	str = NULL;
+//}
+//
+//int main()
+//{
+//	test();
+//	return 0;
+//}
+
+//思考下列代码的打印结果
+//char* GetMemory()
+//{
+//	char p[] = "hello world";
+//	return p;
+//}
+//void test()
+//{
+//	char* str = NULL;
+//	str=GetMemory();
+//	printf("%s\n",str);
+//}
+//int main()
+//{
+//	test();
+//	return 0;
+//}
+
+//当GetMemory结束的时候，p那块空间就还给操作系统了，就不属于当前程序了。str指向的那块空间存的什么就不知道了，有可能未被覆盖
+//也有可能会被覆盖。str成了野指针了
+
+
+//思考test函数运行的结果
+//void GetMemory(char** p,int num)
+//{
+//	*p = (char*)malloc(num);
+//}
+//void test()
+//{
+//	char* str = NULL;
+//	GetMemory(&str,100);
+//	strcpy(str, "hello");
+//	printf("%s\n",str);
+//}
+//int main()
+//{
+//	test();
+//	return 0;
+//}
+//以上代码存在的问题就是没有free
+
+
+//思考以下代码的运行结果
+
+//int main()
+//{
+//	char* str = (char*)malloc(100);
+//	strcpy(str, "hello");
+//	free(str);
+//	if (str != NULL)
+//	{
+//		strcpy(str, "world");
+//		printf(str);
+//	}
+//	return 0;
+//}
+
+//str所指向的空间已经不是自己的了，野指针的问题，形成了非法访问
+
+
+
+
+//求最大公因数和最小公倍数之和
+
+//int main()
+//{
+//	int n, m;
+//	printf("请输入两个数：");
+//	scanf("%d%d", &n, &m);
+//	int min = m > n ? n : m;
+//	int max = m > n ? m : n;
+//	
+//	int i = min;
+//	//求最大公因数
+//	for (; i > 0; i--)
+//	{
+//		if (n % i == 0 && m % i == 0)
+//		{
+//			break;
+//		}
+//	}
+//
+//	//求最小公倍数
+//	int j = 0;
+//	for (j = max;; j++)
+//	{
+//		if (j % m == 0 && j % n == 0)
+//		{
+//			break;
+//		}
+//	}
+//	printf("%d\n", i + j);
+//
+//	return 0;
+//}
+
+
+//优化
+
+//int main()
+//{
+//	int n, m;
+//	printf("请输入两个数：");
+//	scanf("%d%d", &n, &m);
+//	int i = n, j = m;
+//	int r = 0;
+//	while (r = i % j)
+//	{
+//		i = j;
+//		j = r;
+//	}
+//	//此时，j就是最大公约数
+//	//最小公倍数==n*m/j
+//	printf("%d\n", j + (n * m / j));
+//	return 0;
+//}
+
+
+
+//输出空心正方形图案
+
+//输入：4
+//输出：
+// 
+//* * * *
+//*     *
+//*     *
+//* * * *
+
+//输入：5
+//输出：
+//* * * * *
+//*       *
+//*       *
+//*       *
+//* * * * * 
+
+int main()
+{
+	int input = 0;
+	scanf("%d", &input);
+	int i = 0;
+	for (i = 0; i < input; i++)
+	{
+		int j = 0;
+		for (j = 0; j < input; j++)
+		{
+			//打印*
+			
+			if (i == 0 || i == input - 1 || j == 0 || j == input - 1)
+			{
+				printf("* ");
+			}
+			else
+			{
+				printf("  ");
+			}
+		}
+		printf("\n");
+	}
+
+	return 0;
+}
+
+
+
 
 
 
