@@ -1,0 +1,10 @@
+file:D:\C语言\程序的环境和预处理\test.c line：88 data：Jan 29 2024 time：17:46:09 i=0
+file:D:\C语言\程序的环境和预处理\test.c line：88 data：Jan 29 2024 time：17:46:09 i=1
+file:D:\C语言\程序的环境和预处理\test.c line：88 data：Jan 29 2024 time：17:46:09 i=2
+file:D:\C语言\程序的环境和预处理\test.c line：88 data：Jan 29 2024 time：17:46:09 i=3
+file:D:\C语言\程序的环境和预处理\test.c line：88 data：Jan 29 2024 time：17:46:09 i=4
+file:D:\C语言\程序的环境和预处理\test.c line：88 data：Jan 29 2024 time：17:46:09 i=5
+file:D:\C语言\程序的环境和预处理\test.c line：88 data：Jan 29 2024 time：17:46:09 i=6
+file:D:\C语言\程序的环境和预处理\test.c line：88 data：Jan 29 2024 time：17:46:09 i=7
+file:D:\C语言\程序的环境和预处理\test.c line：88 data：Jan 29 2024 time：17:46:09 i=8
+file:D:\C语言\程序的环境和预处理\test.c line：88 data：Jan 29 2024 time：17:46:09 i=9
