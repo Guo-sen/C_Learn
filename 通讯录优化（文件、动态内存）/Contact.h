@@ -43,3 +43,6 @@ void ModifyContact(Contact* pc);//修改指定联系人信息
 void SortContact(Contact* pc); //排序通讯录信息
 
 void DestoryContact(Contact* pc);
+
+void SaveContact(const Contact* pc);
+void LoadContact (Contact* pc);

@@ -67,6 +67,7 @@ int main()
 			SortContact(&con);
 			break;
 		case EXIT:
+			SaveContact(&con);
 			DestoryContact(&con);
 			printf("ÍË³ö\n");
 			break;

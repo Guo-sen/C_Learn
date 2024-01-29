@@ -2,28 +2,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "contact.h"
 
-
-
-int InitContact(Contact* pc)
-{
-	pc->count = 0;
-	pc->data = (PeoInfo*)calloc(DEFAULT_SZ, sizeof(PeoInfo));
-	if (pc->data == NULL)
-	{
-		printf("InitContact::%s\n", strerror(errno));
-		return 1;
-	}
-	pc->capacity = DEFAULT_SZ;
-	return 0; 
-}
-
-void DestoryContact(Contact* pc)
-{
-	free(pc->data);
-	pc->data = NULL;
-}
-
-void CheckCapacity (Contact* pc)
+void CheckCapacity(Contact* pc)
 {
 	if (pc->count == pc->capacity)
 	{
@@ -38,10 +17,56 @@ void CheckCapacity (Contact* pc)
 		{
 			pc->data = ptr;
 			pc->capacity += INC_SZ;
-			printf("增容成功\n");
+			//printf("增容成功\n");
 		}
 	}
 }
+
+void LoadContact(Contact* pc)
+{
+	FILE* pfRead = fopen("contact.txt", "rb");
+	if (pfRead == NULL)
+	{
+		printf("%s\n", strerror(errno));
+		return;
+	}
+
+	//
+	PeoInfo tmp = { 0 };
+	while (fread(&tmp, sizeof(PeoInfo), 1, pfRead) == 1)
+	{
+		CheckCapacity(pc);
+		pc->data[pc->count] = tmp;
+		pc->count++;
+	}
+	
+	fclose(pfRead);
+	pfRead = NULL;
+}
+int InitContact(Contact* pc)
+{
+	pc->count = 0;
+	pc->data = (PeoInfo*)calloc(DEFAULT_SZ, sizeof(PeoInfo));
+	if (pc->data == NULL)
+	{
+		printf("InitContact::%s\n", strerror(errno));
+		return 1;
+	}
+	pc->capacity = DEFAULT_SZ;
+
+
+	//加载文件中的信息到通讯录中
+	LoadContact(pc);
+
+	return 0; 
+}
+
+void DestoryContact(Contact* pc)
+{
+	free(pc->data);
+	pc->data = NULL;
+}
+
 
 void AddContact(Contact* pc)
 {
@@ -192,5 +217,21 @@ void SortContact(Contact* pc)
 }
 
 
+void SaveContact(const Contact* pc)
+{
+	FILE* pfWrite = fopen("contact.txt", "wb");
+	if (pfWrite == NULL)
+	{
+		printf("%s\n", strerror(errno));
+		return;
+	}
+	//写文件--二进制形式写
+	int i = 0;
+	for (i = 0; i < pc->count; i++)
+	{
+		fwrite(pc->data+i, sizeof(PeoInfo), 1, pfWrite);
+	}
+	fclose(pfWrite);
+	pfWrite = NULL;
 
-
+}
