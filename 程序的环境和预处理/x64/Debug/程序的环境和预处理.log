@@ -1,2 +1,8 @@
 ﻿  test.c
+D:\C语言\程序的环境和预处理\test.c(461,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“size_t”
+D:\C语言\程序的环境和预处理\test.c(461,9): message : 请考虑在格式字符串中使用“%zd”
+D:\C语言\程序的环境和预处理\test.c(462,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“size_t”
+D:\C语言\程序的环境和预处理\test.c(462,9): message : 请考虑在格式字符串中使用“%zd”
+D:\C语言\程序的环境和预处理\test.c(463,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“size_t”
+D:\C语言\程序的环境和预处理\test.c(463,9): message : 请考虑在格式字符串中使用“%zd”
   程序的环境和预处理.vcxproj -> D:\C语言\程序的环境和预处理\x64\Debug\程序的环境和预处理.exe
