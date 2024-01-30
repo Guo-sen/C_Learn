@@ -3002,39 +3002,391 @@
 //*       *
 //* * * * * 
 
+//int main()
+//{
+//	int input = 0;
+//	scanf("%d", &input);
+//	int i = 0;
+//	for (i = 0; i < input; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < input; j++)
+//		{
+//			//打印*
+//			
+//			if (i == 0 || i == input - 1 || j == 0 || j == input - 1)
+//			{
+//				printf("* ");
+//			}
+//			else
+//			{
+//				printf("  ");
+//			}
+//		}
+//		printf("\n");
+//	}
+//
+//	return 0;
+//}
+
+//输出箭形
+//输入 2
+// 输出：
+//    *
+//  **
+//***
+//  **
+//    *
+//输入3
+//      *
+//    **
+//  ***
+//****
+//  ***
+//    **
+//      *
+
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	//打印上半部分（上n行）
+//	int i = 0;
+//	for (i = 0; i < n; i++)
+//	{
+//		//打印空格
+//		int j = 0;
+//		for (j = 0; j < n-i; j++)
+//		{
+//			printf("  ");
+//		}
+//		//打印*
+//		for (j = 0; j<=i; j++)
+//		{
+//			printf("*");
+//		}
+//		printf("\n");
+//	}
+//	//打印下半部分
+//	for (i = 0; i < n+1; i++)
+//	{
+//		//打印空格
+//		int j = 0;
+//		for (j = 0; j <i; j++)
+//		{
+//			printf("  ");
+//		}
+//		//打印*
+//		for (j = 0; j <n+1-i; j++)
+//		{
+//			printf("*");
+//		}
+//		printf("\n");
+//	}
+//	return 0;
+//}
+
+
+//输入7个成绩，去掉最高分，去掉最低分，求平均成绩，结果保留小数点后2位（多组输入）
+//int main()
+//{
+//	int score = 0;
+//	int min = 100;
+//	int max = 0;
+//	int sum = 0;
+//	int count = 0;
+//	while (scanf("%d", &score) == 1)
+//	{
+//		count++;
+//		if (score < min)
+//		{
+//			min = score;
+//		}
+//		if(score>max)
+//		{
+//			max = score;
+//		}
+//		sum = sum + score;
+//		if (count == 7)
+//		{
+//			printf("%.2lf\n", (sum - max - min) / 5.0);
+//			count = 0;
+//			min = 100;
+//			max = 0;
+//			sum = 0;
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+
+//找出单身狗
+//一个数组中只有两个数字出现一次，其它所有数字都出现了两次，编写一个函数找出这两个只出现过一次的数字
+
+//void find_single_num(int arr[], int sz,int* dog1,int* dog2)
+//{
+//	int i = 0;
+//	int tmp = 0;
+//	//异或
+//	for (i = 0; i < sz; i++)
+//	{
+//		tmp ^= arr[i];
+//	}
+//	//计算tmp二进制中最右边的第几位是1
+//	int pos = 0;
+//	for (pos = 0; pos < 32; pos++)
+//	{
+//		if (((tmp >> pos) & 1) == 1)
+//		{
+//			break;
+//		}
+//	}
+//
+//	//分组
+//	for (i = 0; i < sz; i++)
+//	{
+//		if (((arr[i] >> pos) & 1) == 1)
+//		{
+//			*dog1 ^= arr[i];
+//			
+//		}
+//		else
+//		{
+//			*dog2 ^= arr[i];
+//		}
+//	}
+//
+//	
+//
+//}
+//
+//int main()
+//{
+//	//1，2，3，4，5，1，2，3，4，6
+//	int arr[] = { 1,2,3,4,5,1,2,3,4,6 };
+//	//整个数组异或在一起（相同的数字异或为0）为5^6
+//	//5     101
+//	//6     110
+//	//5^6   011
+//	
+//	//5^6的结果最后一位是1，说明5^6最低位不相同，可以把最低位为1的分成一组，最低位为0的分成第二组（也可以按倒数第二位分）
+//	//分组：1，1，3，3，5
+//	//		2，2，4，4，6
+//	//把两组分别都异或，得到的是自己组的单身狗
+//
+//	//1.所有数字异或
+//	//2.找出异或结果中哪一位数字为1	----> n
+//	//3.以第n位为1的分一组，以第n位为0的分一组
+//
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	int dog1 = 0;
+//	int dog2 = 0;
+//	find_single_num(arr, sz,&dog1,&dog2);
+//	printf("%d %d\n", dog1, dog2);
+//	return 0;
+//}
+
+
+
+//模拟实现atoi  
+//int atoi( const char *string ); （把一个字符串转换成一个整型）
+//空指针
+//空字符串
+//空格
+//正负号
+//越界（数值太大）
+//非数字字符
+//#include<assert.h>
+//#include<ctype.h>
+//#include<limits.h>
+//enum Status
+//{
+//	VALID,
+//	INVALID
+//}sta=INVALID;//默认非法
+//int my_atoi(char* str)
+//{
+//	int flag = 1;
+//	assert(str != NULL);
+//	if (*str == '\0')
+//	{
+//		return 0;//不能直接返回0，如果字符串是个数字0返回的也是0，会有歧义，需要定义一个全局变量，来表示是合法还是非法
+//	}
+//	while (isspace(*str))//跳过空白字符
+//	{
+//		str++;
+//	}
+//	if (*str == '+')
+//	{
+//		flag = 1;
+//		str++;
+//	}
+//	else if(*str=='-')
+//	{
+//		flag = -1;
+//		str++;
+//	}
+//	long long ret = 0;
+//	while (*str)//如果*str不等于'\0'就进入循环
+//	{
+//		if (isdigit(*str))
+//		{
+//
+//			ret = ret * 10 + flag*(*str - '0');
+//			str++;
+//			if (ret > INT_MAX || ret < INT_MIN)
+//			{
+//				return 0;
+//			}
+//		}
+//		else
+//		{
+//			return (int)ret;
+//		}
+//		
+//	}
+//	if (*str == '\0')
+//	{
+//		sta = VALID;
+//	}
+//	return (int)ret;
+//}
+//
+//int main()
+//{
+//	char arr[] = "-123456";
+//	int ret = 0;
+//	//ret = atoi(arr);
+//	ret = my_atoi(arr);
+//	if (sta == INVALID)
+//	{
+//		printf("非法返回：%d\n", ret);
+//	}
+//	else if (sta == VALID)
+//	{
+//		printf("合法转换%d\n", ret);
+//
+//	}
+//	return 0;
+//}
+
+
+
+//写一个宏，将一个数的二进制的奇数位和偶数位交换
+
+//n&0x55555555 可以将n的二进制位的偶数位保留下来，（奇数位是会全部变成0）（画出二进制的每位观察规律）
+//（n&0x55555555）<<1，可以将偶数位移动到奇数位的位置上
+
+//n&0xaaaaaaaa 可以将奇数位保留下来，偶数位全部变成0
+//（n&0xaaaaaaaa）>>1，可以将奇数位全部移动到偶数位的位置
+
+//（n&0xaaaaaaaa）>>1+（n&0x55555555）<<1就是奇数位和偶数位交换顺序的数字
+
+//#define SWAP_BIT(N) (((N&0x55555555)<<1)+((N&0xaaaaaaaa)>>1))
+//int main()
+//{
+//	int n = 0;
+//	//10 1010
+//	//5  0101(交换后)
+//	scanf("%d", &n);
+//	printf("%d\n", SWAP_BIT(n));
+//	return 0;
+//}
+
+
+
+
+
+
+
+//给一个数字x，每一步可以把这个数字变为x+1或者x-1，求最少多少步才能将它变成一个斐波那契数
+//假设第一个斐波那契数是0，第二个斐波那契数是1
+
+// 1≤N≤1000000
+
+//int main()
+//{
+//	int N = 0;
+//	int a = 0; //第一个
+//	int b = 1; //第二个
+//	int c = a + b; //第三个
+//	printf("请输入一个数：");
+//	scanf("%d",&N);
+//	while (1)
+//	{
+//		if (N == b)
+//		{
+//			printf("0\n");
+//			break;
+//		}
+//		else if (N<b) //此时N在a和b之间
+//		{
+//			if (abs(N - a) > abs(N - b))
+//			{
+//				printf("%d\n", abs(N - b));
+//
+//			}
+//			else
+//			{
+//				printf("%d\n", abs(N - a));
+//			}
+//			break;
+//		}
+//		c = a + b;
+//		a = b;
+//		b = c;
+//		
+//	}
+//
+//	
+//	return 0;
+//}
+
+
+//替换空格
+//实现一个函数，将一个字符串中的每个空格换成"%20"。如： We Are Happy，替换后：We%20Are%20Happy
+
+
+void Replays(char* str,int sz)
+{
+	char* cur = str;
+	int count = 0;
+	while (*cur)
+	{
+		if (*cur == ' ')
+		{
+			count++;//记录空格的个数
+		}
+		cur++;
+	}
+	int end1 = sz - 1;
+	int end2 = sz + count * 2-1;
+	while (end1 != end2)
+	{
+		if (*(str + end1) !=' ')
+		{
+			*(str+end2) = *(str + end1);
+			end1--;
+			end2--;
+		}
+		else
+		{
+			*(str + end2--) = '0';
+			*(str + end2--) = '2';
+			*(str + end2--) = '%';
+			end1--;
+		}
+	}
+}
 int main()
 {
-	int input = 0;
-	scanf("%d", &input);
-	int i = 0;
-	for (i = 0; i < input; i++)
-	{
-		int j = 0;
-		for (j = 0; j < input; j++)
-		{
-			//打印*
-			
-			if (i == 0 || i == input - 1 || j == 0 || j == input - 1)
-			{
-				printf("* ");
-			}
-			else
-			{
-				printf("  ");
-			}
-		}
-		printf("\n");
-	}
-
+	char arr[100] = "We Are Happy";
+	Replays(arr, strlen(arr));
+	printf("%s\n", arr);
 	return 0;
 }
-
-
-
-
-
-
-
 
 //int main()
 //{
